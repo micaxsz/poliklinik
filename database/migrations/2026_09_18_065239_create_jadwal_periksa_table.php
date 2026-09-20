@@ -10,10 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('poli', function (Blueprint $table) {
+        Schema::create('jadwal_periksa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_poli', 25);
-            $table->text('keterangan')->nullable();
+            $table->foreignId('id_dokter')->constrained('users')->cascadeOnDelete();
+            $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('poli');
+        Schema::dropIfExists('jadwal_periksa');
     }
 };

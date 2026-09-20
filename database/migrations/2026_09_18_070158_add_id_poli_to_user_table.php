@@ -10,11 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('poli', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_poli', 25);
-            $table->text('keterangan')->nullable();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('id_poli')->nullable()->constrained('poli')->cascadeOnDelete();
         });
     }
 
@@ -23,6 +20,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('poli');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['id_poli']);
+            $table->dropColumn('id_poli');
+        });
     }
 };
