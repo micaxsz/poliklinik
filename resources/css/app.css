@@ -1,9 +1,12 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+/* 1. Plugin DaisyUI */
+@plugin "daisyui";
 
+/* 2. Custom Theme Variables & Fonts */
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        "Figtree", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-serif: "Instrument Serif", serif;
+    --sidebar-w: 260px;
 }

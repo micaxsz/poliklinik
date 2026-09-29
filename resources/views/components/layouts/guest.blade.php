@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         crossorigin="anonymous" />
 
-    @vite(['resources/js/app.js', 'resources/app.css'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 
     <style>
         * {

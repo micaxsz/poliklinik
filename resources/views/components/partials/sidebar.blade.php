@@ -13,12 +13,12 @@
                         class="text-[10px] font-bold uppercase tracking-wider bg-indigo-400/20 text-indigo-300 border border-indigo-400/30 px-2 py-0.5 rounded-md">
                         Admin
                     </span>
-                @elself(request()->is('dokter*'))
+                @elseif(request()->is('dokter*'))
                     <span
                         class="text-[10px] font-bold uppercase tracking-wider bg-purple-400/20 text-purple-300 border border-purple-400/30 px-2 py-0.5 rounded-md">
                         Dokter
                     </span>
-                @elself(request()->is('pasien*'))
+                @elseif(request()->is('pasien*'))
                     <span
                         class="text-[10px] font-bold uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-md">
                         Pasien
