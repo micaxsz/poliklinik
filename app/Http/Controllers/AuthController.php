@@ -1,13 +1,14 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
-use Auth;
-use Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use ReturnTypeWillChange;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -16,9 +17,11 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -31,14 +34,16 @@ class AuthController extends Controller
             }
         }
 
-        return back()->withErrors(['email' => 'Email atau Password Salah!']);
 
+        return back()->withErrors(['email' => 'Email atau Password Salah !']);
     }
+
 
     public function showRegister()
     {
         return view('auth.register');
     }
+
 
     public function register(Request $request)
     {
@@ -51,24 +56,32 @@ class AuthController extends Controller
             'password' => ['required', 'confirmed'],
         ]);
 
-        if (User::where('no_ktp', $request->no_ktp)->exsists()) {
-            return back()->withErrors(['no_ktp' => 'Nomer KTP sudah terdaftar']);
-        }
+        $lastPasien = User::where('role', 'pasien')->orderBy('id', 'desc')->first;
+        $lastId = $lastPasien ? $lastPasien->id + 1 : 1;
+        $no_rm = date('Ym') . '-' . str_pad($lastId, 3, '0', STR_PAD_LEFT);
 
         User::create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_ktp' => $request->no_ktp,
             'no_hp' => $request->no_hp,
+            'no_rm' => $no_rm,
+            'role' => 'pasien',
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'pasien',
         ]);
-        return redirect()->route('login');
+
+
+
+        return redirect()->route('login')->with('success', 'Registrasi sudah berhasil, Silahkan login!');
     }
+
+
     public function logout()
     {
         Auth::logout();
         return redirect()->route('login');
     }
 }
+
+
