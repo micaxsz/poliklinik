@@ -56,6 +56,11 @@
                     Dashboard Admin
                 </a>
 
+                <a href="{{ route('dokter.index') }}"
+                    class="{{ $baseLink }} {{ request()->routeIs('dokter.*') ? $active : $inactive }}">
+                    <i class="fas fa-user-doctor w-4 text-center"></i>
+                    Manajemen Dokter
+                </a>
             </div>
         @endif
 
