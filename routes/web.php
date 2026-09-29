@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DokterController;
+use App\Http\Controllers\Admin\PasienController;
 use App\Http\Controllers\Admin\PoliController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     })->name('admin.dashboard');
     Route::resource('polis', AdminPoliController::class);
     Route::resource('dokter', DokterController::class);
+    Route::resource('pasien', PasienController::class);
 
 });
 
