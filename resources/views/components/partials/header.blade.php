@@ -1,24 +1,29 @@
-<header class="bg-base-100 border-b border-base-300 h-16 flex items-center px-6 gap-4 sticky top-0 z-30 shadow-sm ">
+<header class="bg-base-100 border-b border-base-300 h-16 flex items-center px-6 gap-4 sticky top-0 z-30 shadow-sm">
 
-    <button onClick="toggleSidebar()" class="btn btn-square btn-ghost lg:hidden">
+    {{-- Mobile Hamburger --}}
+    <button onclick="toggleSidebar()" class="btn btn-square btn-ghost lg:hidden">
         <i data-lucide="menu" class="w-5 h-5"></i>
     </button>
 
+    {{-- Breadcrumb --}}
     <div class="flex-1">
         <div class="flex items-center gap-2 text-sm">
             <span class="text-base-content/50">Poliklinik</span>
             <i data-lucide="chevron-right" class="w-4 h-4 text-base-content/30"></i>
             <span class="font-semibold text-base-content">
-                {{ $tittle ?? 'Dashboard' }}
+                {{ $title ?? 'Dashboard' }}
             </span>
         </div>
     </div>
 
+    {{-- Fullscreen --}}
     <button onclick="toggleFullscreen()" class="btn btn-square btn-ghost">
         <i id="fsIcon" class="fas fa-expand w-5 h-5"></i>
     </button>
 
+    {{-- User Info --}}
     <div class="flex items-center gap-3">
+
         <div class="text-right hidden sm:block">
             <div class="text-sm font-semibold leading-tight">
                 {{ auth()->user()->name ?? 'Pengguna' }}
@@ -36,6 +41,7 @@
             </div>
         </div>
     </div>
+
 </header>
 
 <script>
