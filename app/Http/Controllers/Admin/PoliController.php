@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Schema\IndexDefinition;
 use Illuminate\Http\Request;
+use App\Models\Poli;
 
 class PoliController extends Controller
 {
